@@ -1,28 +1,36 @@
-NAME = libft.a
+LIBFT = ./libft/libft.a
 
-SRC = ft_printf.c	\
+N_TEMP = temp.a
 
-FILEO = $(SRC:.c=.o)
+NAME = libftprintf.a
 
-HEADER = libft.h
+SRCS =  ft_printf.c \
+		
+SURPL_O = 	 
 
-WWW = -Wall -Werror -Wextra
+CC = gcc
 
-$(NAME):
-	gcc $(WWW) -c $(SRC) -I ./includes
-	ar rc $(NAME) $(FILEO)
-	ranlib $(NAME)
+FLAGS = -c -Wall -Wextra -Werror
 
-all: $(NAME)
+INCLUDES = -I./includes
 
-clean:
-	/bin/rm -f $(FILEO)
+OBJS = $(SRCS:.c=.o)
 
-fclean: clean
-	/bin/rm -f $(NAME)
+$(NAME): $(OBJS)
+	$(MAKE) bonus -C ./libft
+	cp libft/libft.a $(NAME)
+	$(CC) $(FLAGS) $(INCLUDES) $(SRCS)
+	ar -rcs $(NAME) $(OBJS)
 
-re: fclean all 
+all : $(NAME)
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
+clean :
+	$(MAKE) clean -C ./libft
+	rm -rf $(SURPL_O) 
+	rm -rf $(OBJS)
+
+fclean : clean
+	$(MAKE) fclean -C ./libft
+	rm -rf $(NAME)
+
+re : fclean all
