@@ -1,6 +1,4 @@
 #include "includes/ft_printf.h"
-#include "libft/ft_strchr.c"
-#include "libft/ft_strlen.c"
 
 void ft_putchar(char c)
 {
@@ -42,7 +40,9 @@ void	ft_base(unsigned int i, unsigned int base_length, char *base)
 		ft_base(i % base_length, base_length, base);
 	}
 	else
+	{
 		ft_putchar(base[i]);
+	}
 }
 
 t_print *ft_initialise_tab(t_print *tab)                       
@@ -96,6 +96,8 @@ int	ispointer(t_print *tab)
 	int len = 0;
 	unsigned long res;
 	res = va_arg(tab->args, unsigned long);
+	write(1, &"0x", 2);
+	ft_base(res, 16, "0123456789abcdef");
 	tab->len += 2;
 	return len;
 }
@@ -152,14 +154,13 @@ int	isdecint(t_print *tab)
 }
 int	ishex(t_print *tab)
 {
-	int len = 0;
+	int len2 = 0;
 	int res;
 
 	res = va_arg(tab->args, unsigned int);
 	write(1,"0x",2);
 	ft_base(res, 16, "0123456789abcdef");
-	if (res < 0)
-		tab->len+=10;
+	tab->len+=len2;
 }
 void	isperc(t_print *tab)
 {
@@ -221,5 +222,5 @@ int ft_printf(const char *input, ...)
 
 int main()
 {
-	ft_printf("Hello %x ", -2);
+	ft_printf("Hello %x ", 400);
 }
