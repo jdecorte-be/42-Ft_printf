@@ -10,6 +10,7 @@ void	ft_putnbr(int nb)
 	if (nb < 0)
 	{
 		nb = -nb;
+		ft_putchar('-');
 	}
 	if (nb >= 10)
 	{
@@ -152,7 +153,7 @@ int	isdecint(t_print *tab)
 	tab->len += len;
 	return len;
 }
-int	ishex(t_print *tab)
+void	ishex(t_print *tab)
 {
 	int len2 = 0;
 	int res;
@@ -218,9 +219,4 @@ int ft_printf(const char *input, ...)
 	va_end(tab->args);
 	free(tab);
 	return tab->len;
-}
-
-int main()
-{
-	ft_printf("Hello %x ", 400);
 }
