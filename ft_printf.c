@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/19 15:27:35 by jdecorte          #+#    #+#             */
+/*   Updated: 2021/10/19 15:27:48 by jdecorte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 t_print	*ft_initialise_tab(t_print *tab)
@@ -18,8 +30,10 @@ void	ft_conv(char c, t_print *tab)
 		isint(tab);
 	if (c == 'u')
 		isdecint(tab);
-	if (c == 'x' || c == 'X')
-		ishex(tab);
+	if (c == 'X')
+		ishexmaj(tab);
+	if (c == 'x')
+		ishexmin(tab);
 	if (c == '%')
 		isperc(tab);
 }

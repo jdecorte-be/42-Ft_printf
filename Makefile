@@ -5,15 +5,18 @@ N_TEMP = temp.a
 NAME = libftprintf.a
 
 SRCS =  ft_printf.c \
-		src/charandstring.c \
-		src/pntandhex.c \
-		src/utils.c \
-		src/putnbr.c 
+		src/base.c \
+		src/iscors.c \
+		src/ishex.c \
+		src/isintp.c \
+		src/utils.c 
 		
-SURPL_O = 	putnbr.o \
+SURPL_O = 	base.o \
+			iscors.o \
+			ishex.o \
 			utils.o \
-			putandhex.o \
-			charandstring.o
+			isintp.o
+
 
 CC = gcc
 

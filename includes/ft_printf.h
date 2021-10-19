@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/19 15:27:30 by jdecorte          #+#    #+#             */
+/*   Updated: 2021/10/19 15:38:17 by jdecorte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -13,22 +25,26 @@ typedef struct s_print
 }		t_print;
 
 int		ft_printf(const char *input, ...);
-size_t	ft_strlen(const char *theString);
-int		isint(t_print *tab);
-int		ischar(t_print *tab);
-int		ispointer(t_print *tab);
-int		ishex(t_print *tab);
-int		isint(t_print *tab);
-int		isdecint(t_print *tab);
+void	ft_putbase10(unsigned int i, t_print *tab);
+void	ft_puthexmin(unsigned int i, t_print *tab);
+void	ft_puthexmaj(unsigned int i, t_print *tab);
+void	ft_putpnt(unsigned long int i, t_print *tab);
 
+int	ispointer(t_print *tab);
+int	ishexmin(t_print *tab);
+int	ishexmaj(t_print *tab);
+
+int	ischar(t_print *tab);
 char	isstring(t_print *tab);
 
-void	isperc(t_print *tab);
-void	ft_putstr(char *str);
-void	ft_putnbr(int nb);
-void	ft_putchar(char c);
-
 char	*ft_strchr(const char *string, int searchedChar);
-char	*ft_itoa(int nb);
+
+void	ft_putchar(char c);
+void	ft_putnbr(long int nb);
+void	ft_putstr(char *str);
+int	isint(t_print *tab);
+void	isdecint(t_print *tab);
+void	isperc(t_print *tab);
+size_t ft_strlen(const char *theString);
 
 #endif

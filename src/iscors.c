@@ -1,43 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   iscors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 15:59:59 by jdecorte          #+#    #+#             */
-/*   Updated: 2021/10/19 16:00:00 by jdecorte         ###   ########.fr       */
+/*   Created: 2021/10/19 15:31:39 by jdecorte          #+#    #+#             */
+/*   Updated: 2021/10/19 15:31:40 by jdecorte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putchar(char c)
+int	ischar(t_print *tab)
 {
-	write(1, &c, 1);
+	int		len;
+	char	res;
+
+	len = 0;
+	res = va_arg(tab->args, unsigned int);
+	tab->len += 1;
+	ft_putchar(res);
+	return (len);
 }
 
-void	ft_putnbr(long int nb)
+char	isstring(t_print *tab)
 {
-	if (nb < 0)
-		nb = -nb;
-	if (nb >= 10)
+	char	*res;
+	int		i;
+
+	res = va_arg(tab->args, char *);
+	if (res == NULL)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putstr("(null)");
+		tab->len += 6;
+		return (0);
 	}
-	else
-		ft_putchar(nb + '0');
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
 	i = 0;
-	while (str[i] != '\0')
+	while (res[i])
 	{
-		ft_putchar(str[i]);
+		ft_putchar(res[i]);
+		tab->len++;
 		i++;
 	}
+	return (0);
 }
