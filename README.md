@@ -1,4 +1,4 @@
-# ft_printf
+# Ft_printf
 Recoding the libc’s printf function!
 
 ##### Status
