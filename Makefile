@@ -1,46 +1,35 @@
-LIBFT = ./libft/libft.a
-
-N_TEMP = temp.a
-
 NAME = libftprintf.a
 
-SRCS =  ft_printf.c \
-		src/base.c \
-		src/iscors.c \
-		src/ishex.c \
-		src/isintp.c \
-		src/utils.c 
-		
-SURPL_O = 	base.o \
-			iscors.o \
-			ishex.o \
-			utils.o \
-			isintp.o
+SRCS = \
+	ft_printf.c \
+	src/base.c \
+	src/iscors.c \
+	src/ishex.c \
+	src/isintp.c \
+	src/utils.c \
+
+OBJS = ${SRCS:.c=.o}
+
+OBJSBONUS = ${BONUS:.c=.o}
+
+CC		= gcc
+RM		= rm -f
+
+CFLAGS = -Wall -Wextra -Werror
+
+.c.o:
+		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
 
-CC = gcc
+$(NAME): ${OBJS}
+		ar rcs ${NAME} ${OBJS}
 
-FLAGS = -c -Wall -Wextra -Werror
+all:	${NAME}
 
-INCLUDES = -I./includes
+clean:
+		${RM} ${OBJS} ${OBJSBONUS}
 
-OBJS = $(SRCS:.c=.o)
+fclean:	clean
+		${RM} ${NAME}
 
-$(NAME): $(OBJS)
-	$(MAKE) bonus -C ./libft
-	cp libft/libft.a $(NAME)
-	$(CC) $(FLAGS) $(INCLUDES) $(SRCS)
-	ar -rcs $(NAME) $(OBJS)
-
-all : $(NAME)
-
-clean :
-	$(MAKE) clean -C ./libft
-	rm -rf $(SURPL_O) 
-	rm -rf $(OBJS)
-
-fclean : clean
-	$(MAKE) fclean -C ./libft
-	rm -rf $(NAME)
-
-re : fclean all
+re:		fclean all

@@ -6,25 +6,22 @@
 /*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:31:39 by jdecorte          #+#    #+#             */
-/*   Updated: 2021/10/19 15:31:40 by jdecorte         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:02:07 by jdecorte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ischar(t_print *tab)
+void	ischar(t_print *tab)
 {
-	int		len;
 	char	res;
 
-	len = 0;
 	res = va_arg(tab->args, unsigned int);
 	tab->len += 1;
 	ft_putchar(res);
-	return (len);
 }
 
-char	isstring(t_print *tab)
+void	isstring(t_print *tab)
 {
 	char	*res;
 	int		i;
@@ -34,7 +31,7 @@ char	isstring(t_print *tab)
 	{
 		ft_putstr("(null)");
 		tab->len += 6;
-		return (0);
+		return ;
 	}
 	i = 0;
 	while (res[i])
@@ -43,5 +40,4 @@ char	isstring(t_print *tab)
 		tab->len++;
 		i++;
 	}
-	return (0);
 }

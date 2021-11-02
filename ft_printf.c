@@ -6,7 +6,7 @@
 /*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:27:35 by jdecorte          #+#    #+#             */
-/*   Updated: 2021/10/19 15:27:48 by jdecorte         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:00:03 by jdecorte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	ft_conv(char c, t_print *tab)
 		ispointer(tab);
 	else if (c == 'd' || c == 'i')
 		isint(tab);
-	if (c == 'u')
+	else if (c == 'u')
 		isdecint(tab);
-	if (c == 'X')
+	else if (c == 'X')
 		ishexmaj(tab);
-	if (c == 'x')
+	else if (c == 'x')
 		ishexmin(tab);
-	if (c == '%')
+	else if (c == '%')
 		isperc(tab);
 }
 

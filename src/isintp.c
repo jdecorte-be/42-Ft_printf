@@ -6,21 +6,17 @@
 /*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:59:53 by jdecorte          #+#    #+#             */
-/*   Updated: 2021/10/19 15:59:54 by jdecorte         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:02:23 by jdecorte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	isint(t_print *tab)
+void	isint(t_print *tab)
 {
-	int		res;
-	char	*intmin;
+	int	res;
 
-	intmin = "-2147483648";
 	res = va_arg(tab->args, long int);
-	if (-2147483647 >= res)
-		tab->len += 10;
 	if (res < 0)
 	{
 		res = -res;
@@ -30,12 +26,11 @@ int	isint(t_print *tab)
 	ft_putnbr(res);
 	if (res == 0)
 		tab->len++;
-	while (res > 0)
+	while (res != 0)
 	{
 		res = res / 10;
 		tab->len ++;
 	}
-	return (0);
 }
 
 void	isdecint(t_print *tab)
